@@ -8,8 +8,12 @@ def read_sessions(file_path):
     sessions = []
     with open(file_path, 'r') as file:
         for line in file:
-            phone, api_id, api_hash = line.strip().split(',')
-            sessions.append((phone, int(api_id), api_hash))
+            line = line.replace("\n", "")
+
+            if len(line):
+                phone, api_id, api_hash = line.strip().split(',')
+                sessions.append((phone, int(api_id), api_hash))
+                
     return sessions
 
 # Функция для сохранения данных api_id и api_hash
